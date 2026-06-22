@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap');
+
+/* TOKENS */
+:root {
+  --sw-black:  #0a0a0f;
+  --sw-dark:   #12121a;
+  --sw-panel:  #1a1a28;
+  --sw-border: rgba(255, 255, 255, 0.07);
+  --sw-gold:   #ffe81f;
+  --sw-blue:   #4af7ff;
+  --sw-red:    #ff4040;
+  --sw-text:   #c9cdd4;
+  --sw-muted:  #5a6070;
+}
+
+/* BASE */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--sw-black);
+  color: var(--sw-text);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Fondo estrellado ambiental */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at  8% 15%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 28% 72%, rgba(255,255,255,.40) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 10%, rgba(255,255,255,.60) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 48%, rgba(255,255,255,.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 43% 87%, rgba(255,255,255,.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 91% 28%, rgba(255,255,255,.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at  4% 62%, rgba(255,255,255,.30) 0%, transparent 100%),
+    radial-gradient(1px 1px at 67% 93%, rgba(255,255,255,.50) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 22% 38%, rgba(255,255,255,.65) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 54%, rgba(74,247,255,.20) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 20%, rgba(255,232,31,.15) 0%, transparent 100%);
+}
+
+/* ─── SCROLLBAR ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,232,31,.2); border-radius: 2px; }
+
+/* ─── UTILITARIOS SW ──────────────────────────────────────────────────────── */
+.sw-font-display { font-family: 'Orbitron', monospace; }
+.sw-text-gold    { color: var(--sw-gold); }
+.sw-text-blue    { color: var(--sw-blue); }
+.sw-text-muted   { color: var(--sw-muted); }
+
+
+.sw-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(74,247,255,.2);
+  border-top-color: var(--sw-blue);
+  border-radius: 50%;
+  animation: sw-spin .8s linear infinite;
+}
+@keyframes sw-spin { to { transform: rotate(360deg); } }
+
+/* Encabezado de sección con línea */
+.sw-section-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.sw-section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sw-gold);
+  white-space: nowrap;
+}
+.sw-section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,232,31,.35), transparent);
+}
+
+/* Fila horizontal de tarjetas con scroll */
+.sw-cards-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.sw-cards-row::-webkit-scrollbar { height: 3px; }
+.sw-cards-row::-webkit-scrollbar-thumb { background: rgba(255,232,31,.2); }

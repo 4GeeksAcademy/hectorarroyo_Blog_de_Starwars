@@ -1,34 +1,48 @@
-// Import necessary components and functions from react-router-dom.
-
+import React from "react";
 import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  Navigate,
 } from "react-router-dom";
-import { Layout } from "./pages/Layout";
-import { Home } from "./pages/Home";
-import { Single } from "./pages/Single";
-import { Demo } from "./pages/Demo";
-import { Starwars } from "./pages/Starwars.jsx";
-import { DetailPeople } from "./pages/DetailPeople.jsx";
+
+import { Layout }        from "./pages/Layout";
+import { Starwars }      from "./pages/Starwars";
+import { Favorites }     from "./pages/Favorites";
+import { DetailPeople }  from "./pages/DetailPeople";
+import { DetailPlanet }  from "./pages/DetailPlanet";
+import { DetailVehicle } from "./pages/DetailVehicle";
+
 
 export const router = createBrowserRouter(
-    createRoutesFromElements(
-    // CreateRoutesFromElements function allows you to build route elements declaratively.
-    // Create your routes here, if you want to keep the Navbar and Footer in all views, add your new routes inside the containing Route.
-    // Root, on the contrary, create a sister Route, if you have doubts, try it!
-    // Note: keep in mind that errorElement will be the default page when you don't get a route, customize that page to make your project more attractive.
-    // Note: The child paths of the Layout element replace the Outlet component with the elements contained in the "element" attribute of these child paths.
-
-      // Root Route: All navigation will start from here.
-      <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>} >
-
-        {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
-        <Route path= "/" element={<Home />} />
-        <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/starwars" element={<Starwars />} />
-        <Route path="/character/:uid" element={ <DetailPeople />} /> 
-      </Route>
-    )
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={<Layout />}
+      errorElement={
+        <div
+          style={{
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            gap: "12px",
+            fontFamily: "'Orbitron', monospace",
+            color: "#ffe81f",
+          }}
+        >
+          <div style={{ fontSize: "4rem" }}>⚠️</div>
+          <p style={{ fontSize: ".7rem", letterSpacing: "3px" }}>RUTA NO ENCONTRADA</p>
+        </div>
+      }
+    >
+      <Route index element={<Navigate to="/starwars" replace />} />      
+      <Route path="starwars"  element={<Starwars />} />     
+      <Route path="favorites" element={<Favorites />} />     
+      <Route path="character/:uid" element={<DetailPeople  />} />
+      <Route path="planet/:uid"    element={<DetailPlanet  />} />
+      <Route path="vehicle/:uid"   element={<DetailVehicle />} />
+    </Route>
+  )
 );
